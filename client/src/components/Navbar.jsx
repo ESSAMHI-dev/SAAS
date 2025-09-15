@@ -25,7 +25,7 @@ const Navbar = () => {
         <UserButton />
       ) : (
         <button
-          onClick={()=> navigate('/login')}
+          onClick={()=> navigate('/ai')}
           className="flex items-center gap-2 rounded-full text-sm cursor-pointer max-sm:px-5 bg-primary
       text-white px-10 py-2.5 hover:bg-blue-500 transition-colors "
         >
