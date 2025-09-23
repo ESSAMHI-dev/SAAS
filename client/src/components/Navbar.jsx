@@ -22,10 +22,17 @@ const Navbar = () => {
       />
 
       {user ? (
-        <UserButton />
+        <div onClick={()=> navigate("/profile")} className="flex flex-row gap-2 cursor-pointer">
+          <h1 className="font-medium mt-1">{user.fullName}</h1>
+          <img
+            src={user.imageUrl}
+            className="w-8 h-8 rounded-full hover:cursor-pointer hover:scale-95"
+            alt=""
+          />
+        </div>
       ) : (
         <button
-          onClick={()=> navigate('/ai')}
+          onClick={() => navigate("/ai")}
           className="flex items-center gap-2 rounded-full text-sm cursor-pointer max-sm:px-5 bg-primary
       text-white px-10 py-2.5 hover:bg-blue-500 transition-colors "
         >

@@ -11,6 +11,7 @@ import ReviewResume from "./pages/ReviewResume";
 import Community from "./pages/Community";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
+import Profile from "./pages/Profile";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -42,6 +43,7 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
         <Route path="/ai" element={<Layout />}>
           <Route index element={<Dashboard />} />
           <Route path="write-article" element={<WriteArticle />} />

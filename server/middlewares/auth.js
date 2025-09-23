@@ -4,7 +4,6 @@ export const auth = async (req, res, next) => {
   try {
     const { userId, has } = await req.auth();
     const hasPremiumPlan = await has({ plan: "premium" });
-
     const user = await clerkClient.users.getUser(userId);
     const metadata = user.privateMetadata || {};
 
@@ -21,7 +20,6 @@ export const auth = async (req, res, next) => {
       req.plan = "premium";
       req.free_usage = 0;
     } else {
-      
       req.plan = "free";
       req.free_usage = metadata.free_usage ?? 0;
     }
