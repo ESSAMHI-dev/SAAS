@@ -4,7 +4,7 @@ import { assets } from "../assets/assets";
 import { Menu, X } from "lucide-react";
 import Sidebar from "../components/Sidebar";
 import SignIn from "../pages/SignIn";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 const Layout = () => {
   const navigate = useNavigate();

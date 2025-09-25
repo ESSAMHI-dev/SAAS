@@ -11,7 +11,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 const navItems = [
   { to: "/ai", label: "Dashboard", Icon: House },
