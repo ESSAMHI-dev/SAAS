@@ -1,7 +1,7 @@
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 const Navbar = () => {
   const navigate = useNavigate();

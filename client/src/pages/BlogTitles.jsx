@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import Markdown from "react-markdown";
-import { useAuth } from "../context/authContext";
+import { useAuth } from "../context/AuthContext";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 
