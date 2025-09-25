@@ -1,19 +1,18 @@
-import React from "react";
 import { assets } from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
-import { useClerk, UserButton, useUser } from "@clerk/clerk-react";
+import { useAuth } from "../context/authContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
-  const { user } = useUser();
-  const { openSignIn } = useClerk();
+  const { user } = useAuth(); 
 
   return (
     <div
       className="fixed z-10 w-full backdrop-blur-2xl flex justify-between items-center py-3 px-4
-    sm:px-20 xl:px-32"
+                 sm:px-20 xl:px-32"
     >
+      {/* Logo */}
       <img
         src={assets.logo}
         alt="logo"
@@ -21,20 +20,26 @@ const Navbar = () => {
         onClick={() => navigate("/")}
       />
 
+      
       {user ? (
-        <div onClick={()=> navigate("/profile")} className="flex flex-row gap-2 cursor-pointer">
-          <h1 className="font-medium mt-1">{user.fullName}</h1>
+        <div
+          onClick={() => navigate("/profile")}
+          className="flex items-center gap-2 cursor-pointer"
+        >
+          <h1 className="font-medium mt-1 max-sm:text-xs max-sm:mt-2">
+            {user.firstName || "User"}
+          </h1>
           <img
-            src={user.imageUrl}
-            className="w-8 h-8 rounded-full hover:cursor-pointer hover:scale-95"
-            alt=""
+            src={user.imageUrl || "/unknown.jpg"}
+            alt={user.userName || "User"}
+            className="w-8 h-8 rounded-full hover:scale-95 transition-transform"
           />
         </div>
       ) : (
         <button
-          onClick={() => navigate("/ai")}
-          className="flex items-center gap-2 rounded-full text-sm cursor-pointer max-sm:px-5 bg-primary
-      text-white px-10 py-2.5 hover:bg-blue-500 transition-colors "
+          onClick={() => navigate("/signin")}
+          className="flex items-center gap-2 px-10 py-2.5 text-sm font-medium text-white 
+                     bg-primary rounded-full hover:bg-blue-500 transition-colors max-sm:px-5 hover:cursor-pointer"
         >
           Get Started <ArrowRight className="w-4 h-4" />
         </button>

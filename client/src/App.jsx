@@ -9,9 +9,11 @@ import RemoveBackground from "./pages/RemoveBackground";
 import RemoveObject from "./pages/RemoveObject";
 import ReviewResume from "./pages/ReviewResume";
 import Community from "./pages/Community";
+import Profile from "./pages/Profile";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import { Toaster } from "react-hot-toast";
 import { useEffect, useState } from "react";
-import Profile from "./pages/Profile";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -43,6 +45,8 @@ function App() {
       <Toaster />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/ai" element={<Layout />}>
           <Route index element={<Dashboard />} />

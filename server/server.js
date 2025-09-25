@@ -1,28 +1,40 @@
 import express from "express";
 import cors from "cors";
 import "dotenv/config";
-import { clerkMiddleware, requireAuth } from "@clerk/express";
 import aiRouter from "./routes/aiRoutes.js";
-import connectCloudinary from "./configs/cloudinary.js";
 import userRouter from "./routes/userRoutes.js";
+import authRouter from "./routes/authRoutes.js";
+import connectCloudinary from "./configs/cloudinary.js";
+import { auth } from "./middlewares/auth.js";
+
+
 
 const app = express();
 
+// Connect Cloudinary
 await connectCloudinary();
 
-app.use(cors());
+// Middleware
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
-app.use(clerkMiddleware());
 
-app.get("/", (req, res) => res.send("server is running"));
+// Public route
+app.get("/", (req, res) => res.send("Server is running"));
 
-app.use(requireAuth());
+// Protected routes
+app.use("/api/auth", authRouter);
+app.use("/api/ai", auth, aiRouter);      
+app.use("/api/user", auth, userRouter);  
 
-app.use("/api/ai", aiRouter);
-app.use("/api/user", userRouter);
 
 const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log("Server is running on port", PORT);
 });
+

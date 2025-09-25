@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { X } from "lucide-react";
+import { useAuth } from "../context/authContext";
 
 const Hero = () => {
   const navigate = useNavigate();
   const [showPopup, setShowPopup] = useState(false);
+  const user = useAuth();
 
   const togglePopup = () => {
     setShowPopup((prev) => !prev);
@@ -29,12 +31,21 @@ const Hero = () => {
       </div>
 
       <div className="flex flex-wrap justify-center gap-4 text-sm max-sm:text-xs">
-        <button
-          onClick={() => navigate("/ai")}
-          className="bg-primary text-white px-10 py-3 rounded-lg hover:scale-102 active:scale-95 transition cursor-pointer"
-        >
-          Start creating now
-        </button>
+        {user ? (
+          <button
+            onClick={() => navigate("/ai")}
+            className="bg-primary text-white px-10 py-3 rounded-lg hover:scale-102 active:scale-95 transition cursor-pointer"
+          >
+            Start creating now
+          </button>
+        ) : (
+          <Link to={"/signin"}>
+            <button className="bg-primary text-white px-10 py-3 rounded-lg hover:scale-102 active:scale-95 transition cursor-pointer">
+              Start creating now
+            </button>
+          </Link>
+        )}
+
         <button
           onClick={togglePopup}
           className="bg-white px-10 py-3 rounded-lg border border-gray-300 hover:scale-102 active:scale-95 transition cursor-pointer"
@@ -48,7 +59,6 @@ const Hero = () => {
         people
       </div>
 
-      
       {showPopup && (
         <div className="fixed inset-0 backdrop-blur-xl bg-opacity-50 flex items-center justify-center z-[9999]">
           <div className="bg-white rounded-lg overflow-hidden w-full max-w-4xl relative shadow-lg">
@@ -56,7 +66,7 @@ const Hero = () => {
               onClick={togglePopup}
               className="absolute top-1 left-1 bg-gray-800 text-white px-1.5 py-1.5 rounded-full z-50 cursor-pointer"
             >
-              <X/>
+              <X />
             </button>
             <video
               src="/demo video.mp4"
