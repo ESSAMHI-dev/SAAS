@@ -2,7 +2,7 @@ import { Image, Sparkles } from "lucide-react";
 import React, { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/temp";
 
 axios.defaults.baseURL = import.meta.env.VITE_BASE_URL;
 

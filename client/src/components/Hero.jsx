@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { X } from "lucide-react";
-import { useAuth } from "../context/AuthContext";
+import { useAuth } from "../context/temp";
 
 const Hero = () => {
   const navigate = useNavigate();
